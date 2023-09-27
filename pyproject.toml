@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "latch-lock"
+version = "0.1.0"
+description = ""
+authors = ["Petr Certik <petr@certik.cz>"]
+readme = "README.md"
+packages = [{include = "latch_lock"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-xlib = "^0.33"
+tk = "^0.1.0"
+columnify = "^1.0.1"
+anytree = "^2.9.0"
+pyyaml = "^6.0.1"
+
+[tool.poetry.scripts]
+ll-show = "latch_lock.show:main"
+ll-run = "latch_lock.run:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

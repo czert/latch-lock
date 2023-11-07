@@ -1,3 +1,6 @@
+import signal
+import sys
+
 from Xlib import XK, X
 from Xlib.display import Display
 
@@ -10,24 +13,19 @@ class Keyboard:
         self.keys = {}
 
         if alarm:
-            import signal
-            import sys
-
             signal.signal(signal.SIGALRM, lambda a, b: sys.exit(1))
-            signal.alarm(30)
+            signal.alarm(alarm)
 
     def grab(self, keys):
         for key in keys:
             keysym = XK.string_to_keysym(key)
             if not keysym:
-                print(f'Bad keyname: "{key}"')
+                # print(f'Bad keyname: "{key}"')
                 continue
             keycode = self.display.keysym_to_keycode(keysym)
             self.keys[keycode] = key
-            print("Grabbing ", key, keysym, keycode)
-            self.root.grab_key(
-                keycode, X.AnyModifier, False, X.GrabModeSync, X.GrabModeAsync
-            )
+            # print("Grabbing ", key, keysym, keycode)
+            self.root.grab_key(keycode, 0, False, X.GrabModeSync, X.GrabModeAsync)
 
     def flush(self):
         for keycode in self.keys.keys():
@@ -35,7 +33,7 @@ class Keyboard:
             self.root.ungrab_key(keycode, X.AnyModifier)
         self.keys.clear()
 
-    def loop(self, callback):
+    def loop(self, handler):
         keys_pressed = 0  # https://stackoverflow.com/questions/18160792/python-xlib-xgrabkey-keyrelease-events-not-firing
 
         while True:
@@ -63,7 +61,7 @@ class Keyboard:
                 # print("Unexpected key event: ", event)
                 continue
 
-            exit = callback(self.keys[event.detail], event)
+            exit = handler(self.keys[event.detail], event)
             if exit:
                 self.flush()
                 self.display.flush()

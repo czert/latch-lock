@@ -1,6 +1,15 @@
+import shlex
+import subprocess
+
 from latch_lock.keyboard import Keyboard
 from latch_lock.load import CommandNode, Load, ModeNode
 from latch_lock.show import Client
+
+
+def aliases(key):
+    if key == "Shift":
+        return ["Shift_L", "Shift_R"]
+    return [key]
 
 
 class State:
@@ -25,7 +34,8 @@ class State:
         show = {}
 
         for node in self.path[-1].children:
-            self.expect[node.key] = node
+            for key in aliases(node.key):
+                self.expect[key] = node
             if type(node) is ModeNode:
                 show[node.key] = f"+{node.name} ({len(node.children)})"
             elif type(node) is CommandNode:
@@ -42,13 +52,14 @@ class State:
 def main():
     client = Client()
     keyboard = Keyboard()
-    root = Load("./actions.yml").root
+    root = Load("/home/pedro/fun/latch-lock/actions.yml").root
     state = State(client, keyboard, root)
 
     def handler(name, event):
         # print("Handling: ", name, event)
 
         if event.type == 3:
+            # MapRequest, ignoring
             return
 
         if name not in state.expect:
@@ -58,7 +69,13 @@ def main():
         if type(node) is ModeNode:
             state.mode(node)
         elif type(node) is CommandNode:
-            print(node.command)
+            if node.command:
+                cmd = shlex.split(node.command)
+                print(">>> ", cmd)
+                try:
+                    subprocess.Popen(cmd, close_fds=True, start_new_session=True)
+                except Exception as e:
+                    print(e)
             state.reset()
 
     keyboard.loop(handler)

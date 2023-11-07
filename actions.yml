@@ -4,7 +4,7 @@ Insert Delete: test
 Insert Prior: test
 Insert KP_Divide: test
 Insert KP_Enter: test
-# Insert q: test
+Insert q: test
 # Insert Return: test
 # Insert KP_Begin: test
 Insert 1: i3-msg "workspace 1"
@@ -82,8 +82,8 @@ Insert m o: i3-msg "move workspace to output right"
 Insert p: i3lock -c 000000
 Insert Print: scrot
 Insert Shift q: i3-msg 'exit'
-# Insert q: i3-msg "reload"
-# Insert Return: alacritty
+Insert q: i3-msg "reload"
+Insert Return: alacritty
 Insert r: mode 'resize'
 Insert r h: i3-msg "resize shrink width 100 px or 10 ppt"
 Insert r j: i3-msg "resize grow height 100 px or 10 ppt"

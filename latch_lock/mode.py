@@ -1,4 +1,4 @@
-class State:
+class Mode:
     PRESS = 0
     HOLD = 1
     LATCH = 2
@@ -62,7 +62,7 @@ class State:
 
     def command(self):
         """
-        Tell State that a command has been fired
+        Tell Mode that a command has been fired
         """
         if self._latched():
             # fall back to last lock

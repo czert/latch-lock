@@ -1,0 +1,12 @@
+[Unit]
+Description="latch-lock show"
+Requires=latch-lock-show.service
+After=latch-lock-show.service
+
+[Service]
+ExecStart=/usr/bin/poetry -C /home/pedro/fun/latch-lock run ll-run
+StandardError=journal+console
+StandardOutput=journal+console
+StandardInput=null
+
+#https://superuser.com/questions/759759/writing-a-service-that-depends-on-xorg

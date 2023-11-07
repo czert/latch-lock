@@ -1,0 +1,8 @@
+[Unit]
+Description="latch-lock show"
+
+[Service]
+ExecStart=/usr/bin/poetry -C /home/pedro/fun/latch-lock run ll-show
+StandardError=journal+console
+StandardOutput=journal+console
+StandardInput=null

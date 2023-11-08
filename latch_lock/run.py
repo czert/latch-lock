@@ -72,12 +72,15 @@ class State:
         self.keyboard.grab(self.expect.keys())
 
     def show_menu(self):
-        show = {}
+        show = {
+            "mode": self.mode.stack,
+            "commands": {},
+        }
         for node in self.active_node().children:
             if type(node) is ModeNode:
-                show[node.key] = f"+{node.name} ({len(node.children)})"
+                show["commands"][node.key] = f"+{node.name} ({len(node.children)})"
             elif type(node) is CommandNode:
-                show[node.key] = f"{node.command} ({node.flags})"
+                show["commands"][node.key] = f"{node.command} ({node.flags})"
 
         if self.mode.stack:
             self.client.send("show", show)

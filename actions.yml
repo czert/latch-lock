@@ -1,168 +1,168 @@
-Insert: mode 'cmd'
-Insert BackSpace: test
-Insert Delete: test
-Insert Prior: test
-Insert KP_Divide: test
-Insert KP_Enter: test
-Insert q: test
-# Insert Return: test
-# Insert KP_Begin: test
-Insert 1: i3-msg "workspace 1"
-Insert 2: i3-msg "workspace 2"
-Insert 3: i3-msg "workspace 3"
-Insert 4: i3-msg "workspace 4"
-Insert 5: i3-msg "workspace 5"
-Insert 6: i3-msg "workspace 6"
-Insert 7: i3-msg "workspace 7"
-Insert 8: i3-msg "workspace 8"
-Insert 9: i3-msg "workspace 9"
-Insert 0: i3-msg "workspace 10"
-Insert a: mode 'execute'
-Insert a b: bitwig-studio
-Insert a f: firefox
-Insert a p: alacritty --class floating -e 'ipython'
-Insert a s: scrot -s
-Insert a s: signal-desktop
-Insert a t: alacritty --class floating -e 'tint'
-Insert a v: alacritty --class floating -e 'alsamixer'
-Insert a w: vivaldi-stable
-Insert a z: alacritty --class floating
-Insert a o d: /home/pedro/bin/otpd
-Insert a o t: /home/pedro/bin/otpt
-Insert bar: i3-msg "split h"
-Insert minus: i3-msg "split v"
-Insert b: mode 'brightness'
-Insert b j: "/home/pedro/bin/bdown.sh"
-Insert b k: "/home/pedro/bin/bup.sh"
-Insert b 0: "/home/pedro/bin/bset.sh 0"
-Insert b 1: "/home/pedro/bin/bset.sh 10"
-Insert b 2: "/home/pedro/bin/bset.sh 20"
-Insert b 3: "/home/pedro/bin/bset.sh 30"
-Insert b 4: "/home/pedro/bin/bset.sh 40"
-Insert b 5: "/home/pedro/bin/bset.sh 50"
-Insert b 6: "/home/pedro/bin/bset.sh 60"
-Insert b 7: "/home/pedro/bin/bset.sh 70"
-Insert b 8: "/home/pedro/bin/bset.sh 80"
-Insert b 9: "/home/pedro/bin/bset.sh 90"
-Insert b o: "/home/pedro/bin/bset.sh 100"
-Insert c: i3-msg "focus child"
-Insert m: i3-msg "focus child"
-Insert Shift c: i3-msg "kill"
-Insert d: dmenu_run -fn 'pango:Droid Sans Mono Slashed for Powerline 16'
-Insert F1: i3-msg "workspace f1:browse"
-Insert F2: i3-msg "workspace f2:office"
-Insert F3: i3-msg "workspace f3:slack"
-Insert F4: i3-msg "workspace f4:message"
-Insert F5: i3-msg "workspace f5:music"
-Insert F6: i3-msg "workspace f6:watch"
-Insert F7: i3-msg "workspace f7:anon"
-Insert F8: i3-msg "workspace f8:vivaldi"
-Insert F9: i3-msg "workspace f9:rec"
-Insert F10: i3-msg "workspace f10"
-Insert F11: i3-msg "workspace f11"
-Insert F12: i3-msg "workspace f12"
-Insert f: i3-msg "fullscreen toggle"
-Insert g: i3-msg "focus mode_toggle"
-Insert h: i3-msg "focus left"
-Insert Shift h: i3-msg "move left 50"
-Insert m h: i3-msg "move left 50"
-Insert i: i3-msg "focus parent"
-Insert j: i3-msg "focus down"
-Insert Shift j: i3-msg "move down 50"
-Insert m j: i3-msg "move down 50"
-Insert k: i3-msg "focus up"
-Insert Shift k: i3-msg "move up 50"
-Insert m k: i3-msg "move up 50"
-Insert l: i3-msg "focus right"
-Insert Shift l: i3-msg "move right 50"
-Insert m l: i3-msg "move right 50"
-Insert o: i3-msg "focus output right"
-Insert Shift o: i3-msg "move workspace to output right"
-Insert m o: i3-msg "move workspace to output right"
-Insert p: i3lock -c 000000
-Insert Print: scrot
-Insert Shift q: i3-msg 'exit'
-Insert q: i3-msg "reload"
-Insert Return: alacritty
-Insert r: mode 'resize'
-Insert r h: i3-msg "resize shrink width 100 px or 10 ppt"
-Insert r j: i3-msg "resize grow height 100 px or 10 ppt"
-Insert r k: i3-msg "resize shrink height 100 px or 10 ppt"
-Insert r l: i3-msg "resize grow width 100 px or 10 ppt"
-Insert Shift r: i3-msg "restart"
-Insert m 1: &m1 i3-msg "move container to workspace 1"
-Insert m 2: &m2 i3-msg "move container to workspace 2"
-Insert m 3: &m3 i3-msg "move container to workspace 3"
-Insert m 4: &m4 i3-msg "move container to workspace 4"
-Insert m 5: &m5 i3-msg "move container to workspace 5"
-Insert m 6: &m6 i3-msg "move container to workspace 6"
-Insert m 7: &m7 i3-msg "move container to workspace 7"
-Insert m 8: &m8 i3-msg "move container to workspace 8"
-Insert m 9: &m9 i3-msg "move container to workspace 9"
-Insert m 0: &m0 i3-msg "move container to workspace 10"
-Insert m F1: &mf1 i3-msg "move container to workspace f1:browse"
-Insert m F2: &mf2 i3-msg "move container to workspace f2:office"
-Insert m F3: &mf3 i3-msg "move container to workspace f3:slack"
-Insert m F4: &mf4 i3-msg "move container to workspace f4:message"
-Insert m F5: &mf5 i3-msg "move container to workspace f5:music"
-Insert m F6: &mf6 i3-msg "move container to workspace f6:watch"
-Insert m F7: &mf7 i3-msg "move container to workspace f7:anon"
-Insert m F8: &mf8 i3-msg "move container to workspace f8:vivaldi"
-Insert m F9: &mf9 i3-msg "move container to workspace f9:rec"
-Insert m F10: &mf10 i3-msg "move container to workspace f10"
-Insert m F11: &mf11 i3-msg "move container to workspace f11"
-Insert m F12: &mf12 i3-msg "move container to workspace f12"
-<<: {Insert Shift 1: *m1, Insert Shift 2: *m2, Insert Shift 3: *m3, Insert Shift 4: *m4, Insert Shift 5: *m5, Insert Shift 6: *m6,
-  Insert Shift 7: *m7, Insert Shift 8: *m8, Insert Shift 9: *m9, Insert Shift 0: *m0, Insert Shift F1: *mf1, Insert Shift F2: *mf2,
-  Insert Shift F3: *mf3, Insert Shift F4: *mf4, Insert Shift F5: *mf5, Insert Shift F6: *mf6, Insert Shift F7: *mf7, Insert Shift F8: *mf8,
-  Insert Shift F9: *mf9, Insert Shift F10: *mf10, Insert Shift F11: *mf11, Insert Shift F12: *mf12}
-Insert Shift Return: alacritty --class floating
-Insert Shift Return: alacritty --class floating
-Insert Shift space: i3-msg "layout toggle splith splitv"  # deprecated
-Insert s: i3-msg "layout stacking"  # deprecated
-Insert n: mode 'navigate'
-Insert n h: --release xdotool key Left
-Insert n j: --release xdotool key Down
-Insert n k: --release xdotool key Up
-Insert n l: --release xdotool key Right
-Insert mod2+KP_5: --release xdotool key Num_Lock; notify-send -t 1000 'Num_Lock OFF' --urgency=low
-# Insert KP_Begin: --release xdotool key Num_Lock; notify-send -t 1000 'Num_Lock ON' --urgency=low
-#Insert l: mode 'layout'
-#Insert l v: i3-msg "layout splitv"
-#Insert l h: i3-msg "layout splith"
-#Insert l s: i3-msg "layout stacking"
-#Insert l t: i3-msg "layout tabbed"
-Insert Tab: i3-msg "workspace back_and_forth"
-Insert t: i3-msg "floating toggle"
-Insert u: i3-msg "focus output left"
-Insert Shift u: i3-msg "move workspace to output left"
-Insert m u: i3-msg "move workspace to output left"
-Insert v: mode 'volume'
-Insert v button4: --whole-window --border "amixer -M set Master 1%+"
-Insert v button5: --whole-window --border "amixer -M set Master 1%-"
-Insert v h: "amixer -M set Master 1%-"
-Insert v l: "amixer -M set Master 1%+"
-Insert v j: "amixer -M set Master 5%-"
-Insert v k: "amixer -M set Master 5%+"
-Insert v Shift j: "amixer -M set Master 20%-"
-Insert v Shift k: "amixer -M set Master 20%+"
-Insert v m: "amixer -M set Master toggle"
-Insert v Shift m: "amixer -M set Master mute"
-Insert v u: "amixer -M set Master unmute"
-Insert v i: "amixer -M set Master 1%"
-Insert v 0: "amixer -M set Master 0%"
-Insert v 1: "amixer -M set Master 10%"
-Insert v 2: "amixer -M set Master 20%"
-Insert v 3: "amixer -M set Master 30%"
-Insert v 4: "amixer -M set Master 40%"
-Insert v 5: "amixer -M set Master 50%"
-Insert v 6: "amixer -M set Master 60%"
-Insert v 7: "amixer -M set Master 70%"
-Insert v 8: "amixer -M set Master 80%"
-Insert v 9: "amixer -M set Master 90%"
-Insert v o: "amixer -M set Master 100%"
-Insert w: i3-msg "layout tabbed  # deprecated"
-Insert z: xdotool getactivewindow -- mousemove --polar --window %1 0 0
+Caps_Lock: mode 'cmd'
+Caps_Lock BackSpace: test
+Caps_Lock Delete: test
+Caps_Lock Prior: test
+Caps_Lock KP_Divide: test
+Caps_Lock KP_Enter: test
+Caps_Lock q: test
+# Caps_Lock Return: test
+# Caps_Lock KP_Begin: test
+Caps_Lock 1: i3-msg "workspace 1"
+Caps_Lock 2: i3-msg "workspace 2"
+Caps_Lock 3: i3-msg "workspace 3"
+Caps_Lock 4: i3-msg "workspace 4"
+Caps_Lock 5: i3-msg "workspace 5"
+Caps_Lock 6: i3-msg "workspace 6"
+Caps_Lock 7: i3-msg "workspace 7"
+Caps_Lock 8: i3-msg "workspace 8"
+Caps_Lock 9: i3-msg "workspace 9"
+Caps_Lock 0: i3-msg "workspace 10"
+Caps_Lock a: mode 'execute'
+Caps_Lock a b: bitwig-studio
+Caps_Lock a f: firefox
+Caps_Lock a p: alacritty --class floating -e 'ipython'
+Caps_Lock a s: scrot -s
+Caps_Lock a s: signal-desktop
+Caps_Lock a t: alacritty --class floating -e 'tint'
+Caps_Lock a v: alacritty --class floating -e 'alsamixer'
+Caps_Lock a w: vivaldi-stable
+Caps_Lock a z: alacritty --class floating
+Caps_Lock a o d: /home/pedro/bin/otpd
+Caps_Lock a o t: /home/pedro/bin/otpt
+Caps_Lock bar: i3-msg "split h"
+Caps_Lock minus: i3-msg "split v"
+Caps_Lock b: mode 'brightness'
+Caps_Lock b j: "/home/pedro/bin/bdown.sh"
+Caps_Lock b k: "/home/pedro/bin/bup.sh"
+Caps_Lock b 0: "/home/pedro/bin/bset.sh 0"
+Caps_Lock b 1: "/home/pedro/bin/bset.sh 10"
+Caps_Lock b 2: "/home/pedro/bin/bset.sh 20"
+Caps_Lock b 3: "/home/pedro/bin/bset.sh 30"
+Caps_Lock b 4: "/home/pedro/bin/bset.sh 40"
+Caps_Lock b 5: "/home/pedro/bin/bset.sh 50"
+Caps_Lock b 6: "/home/pedro/bin/bset.sh 60"
+Caps_Lock b 7: "/home/pedro/bin/bset.sh 70"
+Caps_Lock b 8: "/home/pedro/bin/bset.sh 80"
+Caps_Lock b 9: "/home/pedro/bin/bset.sh 90"
+Caps_Lock b o: "/home/pedro/bin/bset.sh 100"
+Caps_Lock c: i3-msg "focus child"
+Caps_Lock m: i3-msg "focus child"
+Caps_Lock Shift c: i3-msg "kill"
+Caps_Lock d: dmenu_run -fn 'pango:Droid Sans Mono Slashed for Powerline 16'
+Caps_Lock F1: i3-msg "workspace f1:browse"
+Caps_Lock F2: i3-msg "workspace f2:office"
+Caps_Lock F3: i3-msg "workspace f3:slack"
+Caps_Lock F4: i3-msg "workspace f4:message"
+Caps_Lock F5: i3-msg "workspace f5:music"
+Caps_Lock F6: i3-msg "workspace f6:watch"
+Caps_Lock F7: i3-msg "workspace f7:anon"
+Caps_Lock F8: i3-msg "workspace f8:vivaldi"
+Caps_Lock F9: i3-msg "workspace f9:rec"
+Caps_Lock F10: i3-msg "workspace f10"
+Caps_Lock F11: i3-msg "workspace f11"
+Caps_Lock F12: i3-msg "workspace f12"
+Caps_Lock f: i3-msg "fullscreen toggle"
+Caps_Lock g: i3-msg "focus mode_toggle"
+Caps_Lock h: i3-msg "focus left"
+Caps_Lock Shift h: i3-msg "move left 50"
+Caps_Lock m h: i3-msg "move left 50"
+Caps_Lock i: i3-msg "focus parent"
+Caps_Lock j: i3-msg "focus down"
+Caps_Lock Shift j: i3-msg "move down 50"
+Caps_Lock m j: i3-msg "move down 50"
+Caps_Lock k: i3-msg "focus up"
+Caps_Lock Shift k: i3-msg "move up 50"
+Caps_Lock m k: i3-msg "move up 50"
+Caps_Lock l: i3-msg "focus right"
+Caps_Lock Shift l: i3-msg "move right 50"
+Caps_Lock m l: i3-msg "move right 50"
+Caps_Lock o: i3-msg "focus output right"
+Caps_Lock Shift o: i3-msg "move workspace to output right"
+Caps_Lock m o: i3-msg "move workspace to output right"
+Caps_Lock p: i3lock -c 000000
+Caps_Lock Print: scrot
+Caps_Lock Shift q: i3-msg 'exit'
+Caps_Lock q: i3-msg "reload"
+Caps_Lock Return: alacritty
+Caps_Lock r: mode 'resize'
+Caps_Lock r h: i3-msg "resize shrink width 100 px or 10 ppt"
+Caps_Lock r j: i3-msg "resize grow height 100 px or 10 ppt"
+Caps_Lock r k: i3-msg "resize shrink height 100 px or 10 ppt"
+Caps_Lock r l: i3-msg "resize grow width 100 px or 10 ppt"
+Caps_Lock Shift r: i3-msg "restart"
+Caps_Lock m 1: &m1 i3-msg "move container to workspace 1"
+Caps_Lock m 2: &m2 i3-msg "move container to workspace 2"
+Caps_Lock m 3: &m3 i3-msg "move container to workspace 3"
+Caps_Lock m 4: &m4 i3-msg "move container to workspace 4"
+Caps_Lock m 5: &m5 i3-msg "move container to workspace 5"
+Caps_Lock m 6: &m6 i3-msg "move container to workspace 6"
+Caps_Lock m 7: &m7 i3-msg "move container to workspace 7"
+Caps_Lock m 8: &m8 i3-msg "move container to workspace 8"
+Caps_Lock m 9: &m9 i3-msg "move container to workspace 9"
+Caps_Lock m 0: &m0 i3-msg "move container to workspace 10"
+Caps_Lock m F1: &mf1 i3-msg "move container to workspace f1:browse"
+Caps_Lock m F2: &mf2 i3-msg "move container to workspace f2:office"
+Caps_Lock m F3: &mf3 i3-msg "move container to workspace f3:slack"
+Caps_Lock m F4: &mf4 i3-msg "move container to workspace f4:message"
+Caps_Lock m F5: &mf5 i3-msg "move container to workspace f5:music"
+Caps_Lock m F6: &mf6 i3-msg "move container to workspace f6:watch"
+Caps_Lock m F7: &mf7 i3-msg "move container to workspace f7:anon"
+Caps_Lock m F8: &mf8 i3-msg "move container to workspace f8:vivaldi"
+Caps_Lock m F9: &mf9 i3-msg "move container to workspace f9:rec"
+Caps_Lock m F10: &mf10 i3-msg "move container to workspace f10"
+Caps_Lock m F11: &mf11 i3-msg "move container to workspace f11"
+Caps_Lock m F12: &mf12 i3-msg "move container to workspace f12"
+<<: {Caps_Lock Shift 1: *m1, Caps_Lock Shift 2: *m2, Caps_Lock Shift 3: *m3, Caps_Lock Shift 4: *m4, Caps_Lock Shift 5: *m5, Caps_Lock Shift 6: *m6,
+  Caps_Lock Shift 7: *m7, Caps_Lock Shift 8: *m8, Caps_Lock Shift 9: *m9, Caps_Lock Shift 0: *m0, Caps_Lock Shift F1: *mf1, Caps_Lock Shift F2: *mf2,
+  Caps_Lock Shift F3: *mf3, Caps_Lock Shift F4: *mf4, Caps_Lock Shift F5: *mf5, Caps_Lock Shift F6: *mf6, Caps_Lock Shift F7: *mf7, Caps_Lock Shift F8: *mf8,
+  Caps_Lock Shift F9: *mf9, Caps_Lock Shift F10: *mf10, Caps_Lock Shift F11: *mf11, Caps_Lock Shift F12: *mf12}
+Caps_Lock Shift Return: alacritty --class floating
+Caps_Lock Shift Return: alacritty --class floating
+Caps_Lock Shift space: i3-msg "layout toggle splith splitv"  # deprecated
+Caps_Lock s: i3-msg "layout stacking"  # deprecated
+Caps_Lock n: mode 'navigate'
+Caps_Lock n h: --release xdotool key Left
+Caps_Lock n j: --release xdotool key Down
+Caps_Lock n k: --release xdotool key Up
+Caps_Lock n l: --release xdotool key Right
+Caps_Lock mod2+KP_5: --release xdotool key Num_Lock; notify-send -t 1000 'Num_Lock OFF' --urgency=low
+# Caps_Lock KP_Begin: --release xdotool key Num_Lock; notify-send -t 1000 'Num_Lock ON' --urgency=low
+#Caps_Lock l: mode 'layout'
+#Caps_Lock l v: i3-msg "layout splitv"
+#Caps_Lock l h: i3-msg "layout splith"
+#Caps_Lock l s: i3-msg "layout stacking"
+#Caps_Lock l t: i3-msg "layout tabbed"
+Caps_Lock Tab: i3-msg "workspace back_and_forth"
+Caps_Lock t: i3-msg "floating toggle"
+Caps_Lock u: i3-msg "focus output left"
+Caps_Lock Shift u: i3-msg "move workspace to output left"
+Caps_Lock m u: i3-msg "move workspace to output left"
+Caps_Lock v: mode 'volume'
+Caps_Lock v button4: --whole-window --border "amixer -M set Master 1%+"
+Caps_Lock v button5: --whole-window --border "amixer -M set Master 1%-"
+Caps_Lock v h: "amixer -M set Master 1%-"
+Caps_Lock v l: "amixer -M set Master 1%+"
+Caps_Lock v j: "amixer -M set Master 5%-"
+Caps_Lock v k: "amixer -M set Master 5%+"
+Caps_Lock v Shift j: "amixer -M set Master 20%-"
+Caps_Lock v Shift k: "amixer -M set Master 20%+"
+Caps_Lock v m: "amixer -M set Master toggle"
+Caps_Lock v Shift m: "amixer -M set Master mute"
+Caps_Lock v u: "amixer -M set Master unmute"
+Caps_Lock v i: "amixer -M set Master 1%"
+Caps_Lock v 0: "amixer -M set Master 0%"
+Caps_Lock v 1: "amixer -M set Master 10%"
+Caps_Lock v 2: "amixer -M set Master 20%"
+Caps_Lock v 3: "amixer -M set Master 30%"
+Caps_Lock v 4: "amixer -M set Master 40%"
+Caps_Lock v 5: "amixer -M set Master 50%"
+Caps_Lock v 6: "amixer -M set Master 60%"
+Caps_Lock v 7: "amixer -M set Master 70%"
+Caps_Lock v 8: "amixer -M set Master 80%"
+Caps_Lock v 9: "amixer -M set Master 90%"
+Caps_Lock v o: "amixer -M set Master 100%"
+Caps_Lock w: i3-msg "layout tabbed  # deprecated"
+Caps_Lock z: xdotool getactivewindow -- mousemove --polar --window %1 0 0
 XF86AudioLowerVolume: "amixer -M set Master 5%-"
 XF86AudioMicMute: "amixer set Capture toggle"
 XF86AudioRaiseVolume: "amixer -M set Master 5%+"

@@ -26,11 +26,11 @@ class Show:
         self.root.title("latch-lock show")
         self.root.overrideredirect(True)
         self.root.configure(bg="black")
-        self.labelvar = tk.StringVar()
-        # self.labelvar.set("\n[startup]\n")
-        label = tk.Label(
+        self.mode_var = tk.StringVar()
+        self.commands_var = tk.StringVar()
+        mode = tk.Label(
             self.root,
-            textvariable=self.labelvar,
+            textvariable=self.mode_var,
             **{
                 "justify": "left",
                 "font": ("Droid Sans Mono Slashed for Powerline", 16),
@@ -38,7 +38,18 @@ class Show:
                 "fg": "white",
             },
         )
-        label.grid(sticky=tk.NW, column=0, row=0, padx=0, pady=0)
+        mode.grid(sticky=tk.NW, column=0, row=1, padx=0, pady=0)
+        commands = tk.Label(
+            self.root,
+            textvariable=self.commands_var,
+            **{
+                "justify": "left",
+                "font": ("Droid Sans Mono Slashed for Powerline", 16),
+                "bg": "black",
+                "fg": "white",
+            },
+        )
+        commands.grid(sticky=tk.NW, column=0, row=0, padx=0, pady=0)
 
         self.update()
         self.root.withdraw()
@@ -73,11 +84,12 @@ class Show:
         elif cmd == "show":
             self.root.deiconify()
             if payload:
-                self.labelvar.set(self.columns(payload, 300))
+                self.mode_var.set(repr(payload["mode"]))
+                self.commands_var.set(self.columns(payload["commands"], 300))
                 self.update()
         else:
             self.root.deiconify()
-            self.labelvar.set("Unknown command: " + repr(cmd))
+            self.commands_var.set("Unknown command: " + repr(cmd))
             self.update()
 
     def receive(self):
@@ -135,7 +147,6 @@ def main():
 
     show = Show()
     show.start()
-
 
 
 if __name__ == "__main__":

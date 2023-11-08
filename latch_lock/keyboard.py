@@ -33,7 +33,7 @@ class Keyboard:
             self.root.ungrab_key(keycode, X.AnyModifier)
         self.keys.clear()
 
-    def loop(self, handler):
+    def loop(self, handle_press, handle_release):
         keys_pressed = 0  # https://stackoverflow.com/questions/18160792/python-xlib-xgrabkey-keyrelease-events-not-firing
 
         while True:
@@ -61,9 +61,7 @@ class Keyboard:
                 # print("Unexpected key event: ", event)
                 continue
 
-            exit = handler(self.keys[event.detail], event)
-            if exit:
-                self.flush()
-                self.display.flush()
-                self.display.ungrab_keyboard(X.CurrentTime)
-                break
+            if event.type == X.KeyPress:
+                handle_release(self.keys[event.detail])
+            elif event.type == X.KeyRelease:
+                handle_press(self.keys[event.detail])

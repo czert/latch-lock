@@ -3,6 +3,7 @@ import subprocess
 
 from latch_lock.keyboard import Keyboard
 from latch_lock.load import CommandNode, Load, ModeNode
+from latch_lock.mode import Mode
 from latch_lock.show import Client
 
 
@@ -13,72 +14,126 @@ def aliases(key):
 
 
 class State:
+    END = "Escape"
+    BACK = "BackSpace"
     path = []
     expect = {}
 
-    def __init__(self, client, keyboard, root):
+    def __init__(self, client, keyboard, root, mode):
         self.client = client
         self.keyboard = keyboard
         self.root = root
+        self.mode = mode
         self.reset()
 
     def reset(self):
-        self.path.clear()
-        self.mode(self.root)
+        self.mode.clear()
+        self.grab_keys()
 
-    def mode(self, node):
+    def active_node(self):
+        node = self.root
+        for key, state in self.mode.stack:
+            for child in node.children:
+                if type(child) is ModeNode and child.key == key:
+                    node = child
+        return node
+
+    def grab_keys(self):
         self.keyboard.flush()
         self.expect.clear()
-        self.path.append(node)
+        self.expect[self.END] = None
+        self.expect[self.BACK] = None
 
-        show = {}
+        active = self.active_node()
 
-        for node in self.path[-1].children:
+        # add active node's children to expected keys
+        for node in active.children:
             for key in aliases(node.key):
                 self.expect[key] = node
+
+        # add active node and it's ancestors to expected keys
+        while True:
+            for key in aliases(active.key):
+                self.expect[key] = active
+            if not active.parent:
+                break
+            active = active.parent
+
+        # grab expected keys
+        self.keyboard.grab(self.expect.keys())
+
+    def show_menu(self):
+        show = {}
+        for node in self.active_node().children:
             if type(node) is ModeNode:
                 show[node.key] = f"+{node.name} ({len(node.children)})"
             elif type(node) is CommandNode:
                 show[node.key] = f"{node.command} ({node.flags})"
 
-        if self.path[-1] is self.root:
-            self.client.send("hide")
-        else:
+        if self.mode.stack:
             self.client.send("show", show)
+        else:
+            self.client.send("hide")
 
-        self.keyboard.grab(self.expect.keys())
+    def press(self, key):
+        self.mode.press(key)
+        self.grab_keys()
+        self.show_menu()
+
+    def release(self, key):
+        self.mode.release(key)
+        self.grab_keys()
+        self.show_menu()
+
+    def special(self, key):
+        if key == self.END:
+            self.mode.clear()
+        elif key == self.BACK:
+            self.mode.pop()
+        self.grab_keys()
+        self.show_menu()
+
+    def command(self, key):
+        for child in self.active_node().children:
+            if type(child) is CommandNode and child.key == key:
+                self.mode.command()
+                self.grab_keys()
+                self.show_menu()
+                if child.command:
+                    cmd = shlex.split(child.command)
+                    try:
+                        subprocess.Popen(cmd, close_fds=True, start_new_session=True)
+                    except Exception as e:
+                        print(e)
+                break
 
 
 def main():
     client = Client()
     keyboard = Keyboard()
     root = Load("/home/pedro/fun/latch-lock/actions.yml").root
-    state = State(client, keyboard, root)
+    mode = Mode()
+    state = State(client, keyboard, root, mode)
 
-    def handler(name, event):
-        # print("Handling: ", name, event)
-
-        if event.type == 3:
-            # MapRequest, ignoring
-            return
-
-        if name not in state.expect:
-            return
-
+    def press(name):
         node = state.expect[name]
         if type(node) is ModeNode:
-            state.mode(node)
+            state.press(name)
         elif type(node) is CommandNode:
-            if node.command:
-                cmd = shlex.split(node.command)
-                print(">>> ", cmd)
-                try:
-                    subprocess.Popen(cmd, close_fds=True, start_new_session=True)
-                except Exception as e:
-                    print(e)
-            state.reset()
+            state.command(name)
+        elif node is None:
+            state.special(name)
 
-    keyboard.loop(handler)
+        print(state.mode.stack)
+
+    def release(name):
+        node = state.expect[name]
+        if type(node) is ModeNode:
+            state.release(name)
+
+        print(state.mode.stack)
+
+    keyboard.loop(press, release)
 
     client.send("hide")
 

@@ -13,6 +13,14 @@ def aliases(key):
     return [key]
 
 
+def unalias(key):
+    if key == "Shift_L":
+        return "Shift"
+    if key == "Shift_R":
+        return "Shift"
+    return key
+
+
 class State:
     END = "Escape"
     BACK = "BackSpace"
@@ -41,8 +49,9 @@ class State:
     def grab_keys(self):
         self.keyboard.flush()
         self.expect.clear()
-        self.expect[self.END] = None
-        self.expect[self.BACK] = None
+        if self.mode.stack:
+            self.expect[self.END] = None
+            self.expect[self.BACK] = None
 
         active = self.active_node()
 
@@ -76,12 +85,14 @@ class State:
             self.client.send("hide")
 
     def press(self, key):
-        self.mode.press(key)
+        self.mode.press(unalias(key))
+        print(self.mode.stack)
         self.grab_keys()
         self.show_menu()
 
     def release(self, key):
-        self.mode.release(key)
+        self.mode.release(unalias(key))
+        print(self.mode.stack)
         self.grab_keys()
         self.show_menu()
 
@@ -90,6 +101,7 @@ class State:
             self.mode.clear()
         elif key == self.BACK:
             self.mode.pop()
+        print(self.mode.stack)
         self.grab_keys()
         self.show_menu()
 
@@ -97,6 +109,7 @@ class State:
         for child in self.active_node().children:
             if type(child) is CommandNode and child.key == key:
                 self.mode.command()
+                print(self.mode.stack)
                 self.grab_keys()
                 self.show_menu()
                 if child.command:
@@ -116,6 +129,7 @@ def main():
     state = State(client, keyboard, root, mode)
 
     def press(name):
+        print("press", name)
         node = state.expect[name]
         if type(node) is ModeNode:
             state.press(name)
@@ -124,14 +138,11 @@ def main():
         elif node is None:
             state.special(name)
 
-        print(state.mode.stack)
-
     def release(name):
+        print("release", name)
         node = state.expect[name]
         if type(node) is ModeNode:
             state.release(name)
-
-        print(state.mode.stack)
 
     keyboard.loop(press, release)
 

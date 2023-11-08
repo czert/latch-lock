@@ -62,6 +62,6 @@ class Keyboard:
                 continue
 
             if event.type == X.KeyPress:
-                handle_release(self.keys[event.detail])
-            elif event.type == X.KeyRelease:
                 handle_press(self.keys[event.detail])
+            elif event.type == X.KeyRelease:
+                handle_release(self.keys[event.detail])

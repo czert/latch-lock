@@ -78,7 +78,8 @@ class Mode:
         return self.key()
 
     def pop(self):
-        self.stack.pop()
+        if self.stack:
+            self.stack.pop()
         return self.key()
 
     def clear(self):
